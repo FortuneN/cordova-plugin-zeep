@@ -1,6 +1,10 @@
 # cordova-plugin-zeep
 Zip compression/decompression on the cordova/phonegap platform
 
+### Platforms
+- ios
+- android
+
 ### Add to project
 
 cordova plugin add https://github.com/FortuneN/cordova-plugin-zeep.git
