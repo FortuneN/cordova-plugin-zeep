@@ -1,37 +1,47 @@
 # cordova-plugin-zeep
 Zip compression/decompression on the cordova/phonegap platform
 
+### Add to project
+
+cordova plugin add https://github.com/FortuneN/cordova-plugin-zeep.git
+
+### Remove from project
+
+cordova plugin remove cordova-plugin-zeep
+
+### Example
 ~~~~
 document.addEventListener('deviceready', function() {
-    try {
-        var source     = cordova.file.applicationDirectory,
-            zip        = cordova.file.cacheDirectory + 'zip.zip',
-            extraction = cordova.file.cacheDirectory + 'extraction';
-        document.body.innerHTML += '<br>#from : ' + source;
-        document.body.innerHTML += '<br>#to: ' + zip;
-        document.body.innerHTML += '<br>#to: ' + cordova.file.cacheDirectory + 'extractedFolder';
-        Zeep.zip({
-            from: source,
-            to: zip
+    
+    var source    = cordova.file.applicationDirectory,
+        zip       = cordova.file.cacheDirectory + 'source.zip',
+        extracted = cordova.file.cacheDirectory + 'extracted';
+            
+    console.log('source    : ' + source   );
+    console.log('zip       : ' + zip      );
+    console.log('extracted : ' + extracted);
+    
+    console.log('zipping ...');
+    
+    Zeep.zip({
+        from : source,
+        to   : zip
+    }, function() {
+        
+        console.log('zip success!');
+        console.log('unzipping ...');
+        
+        Zeep.unzip({
+            from : zip,
+            to   : extracted
         }, function() {
-            try {
-                document.body.innerHTML += '<br>#zip success ! now extracting';
-                Zeep.unzip({
-                    from: zip,
-                    to: extraction
-                }, function() {
-                    document.body.innerHTML += '<br>#unzip success';
-                }, function(e) {
-                    document.body.innerHTML += '<br>#unzip error : ' + (e.message || e);
-                });
-            } catch(e) {
-                document.body.innerHTML += '<br>#unziptry error : ' + (e.message || e);
-            }
+            console.log('unzip success!');
         }, function(e) {
-            document.body.innerHTML += '<br>#zip error : ' + (e.message || e);
+            console.log('unzip error: ', e);
         });
-    } catch(e) {
-        document.body.innerHTML += '<br>#ziptry error : ' + (e.message || e);
-    }
+        
+    }, function(e) {
+        console.log('zip error: ', e);
+    });
 });
 ~~~~
