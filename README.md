@@ -47,8 +47,8 @@ Zeep.zip({
 });
 ~~~~
 
-### [Angular](https://angularjs.org) example (+ other angular-based frameworks -> Ionic, Mobile Angular UI, LumX, mean, angular foundation, 
-](http://mobileangularui.com) / e.t.c.)
+### [Angular](https://angularjs.org) example
+(+ other angular-based frameworks -> Ionic, Mobile Angular UI, LumX, mean, angular foundation, ...)
 ~~~~
 module.controller('MyCtrl', function($scope, $cordovaZeep) {
     
