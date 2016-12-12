@@ -1,5 +1,5 @@
 # cordova-plugin-zeep
-Zip compression/decompression on the Apache Cordova / Phonegap / ionic / ... platform
+Zip compression/decompression on the Apache Cordova / Phonegap / Ionic / ... platform
 
 ### Platforms
 - ios
