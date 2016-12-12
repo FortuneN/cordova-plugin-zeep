@@ -9,32 +9,66 @@ cordova plugin add https://github.com/FortuneN/cordova-plugin-zeep.git
 
 cordova plugin remove cordova-plugin-zeep
 
-### Example
+### Plain example
 ~~~~
-document.addEventListener('deviceready', function() {
+var source    = cordova.file.applicationDirectory,
+    zip       = cordova.file.cacheDirectory + 'source.zip',
+    extracted = cordova.file.cacheDirectory + 'extracted';
+
+console.log('source    : ' + source   );
+console.log('zip       : ' + zip      );
+console.log('extracted : ' + extracted);
+
+console.log('zipping ...');
+
+Zeep.zip({
+    from : source,
+    to   : zip
+}, function() {
+
+    console.log('zip success!');
+    console.log('unzipping ...');
+
+    Zeep.unzip({
+        from : zip,
+        to   : extracted
+    }, function() {
+        console.log('unzip success!');
+    }, function(e) {
+        console.log('unzip error: ', e);
+    });
+
+}, function(e) {
+    console.log('zip error: ', e);
+});
+~~~~
+
+### Angular example
+~~~~
+module.controller('MyCtrl', function($scope, $cordovaZeep) {
     
     var source    = cordova.file.applicationDirectory,
         zip       = cordova.file.cacheDirectory + 'source.zip',
         extracted = cordova.file.cacheDirectory + 'extracted';
-            
+    
     console.log('source    : ' + source   );
     console.log('zip       : ' + zip      );
     console.log('extracted : ' + extracted);
     
     console.log('zipping ...');
     
-    Zeep.zip({
+    $cordovaZeep.zip({
         from : source,
         to   : zip
-    }, function() {
+    }).then(function() {
         
         console.log('zip success!');
         console.log('unzipping ...');
         
-        Zeep.unzip({
+        $cordovaZeep.unzip({
             from : zip,
             to   : extracted
-        }, function() {
+        }).then(function() {
             console.log('unzip success!');
         }, function(e) {
             console.log('unzip error: ', e);
@@ -43,5 +77,6 @@ document.addEventListener('deviceready', function() {
     }, function(e) {
         console.log('zip error: ', e);
     });
+    
 });
 ~~~~
