@@ -6,12 +6,14 @@ Zip compression/decompression on the [Apache Cordova](https://cordova.apache.org
 - android
 
 ### Add to project
-
+```{r, engine='bash', count_lines}
 cordova plugin add https://github.com/FortuneN/cordova-plugin-zeep.git
+```
 
 ### Remove from project
-
+```{r, engine='bash', count_lines}
 cordova plugin remove cordova-plugin-zeep
+```
 
 ### Plain example
 ~~~~
