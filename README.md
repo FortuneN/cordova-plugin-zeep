@@ -6,17 +6,17 @@ Zip compression/decompression on the [Apache Cordova](https://cordova.apache.org
 - android
 
 ### Add to project
-```{r, engine='bash', count_lines}
+```sh
 cordova plugin add https://github.com/FortuneN/cordova-plugin-zeep.git
 ```
 
 ### Remove from project
-```{r, engine='bash', count_lines}
+```sh
 cordova plugin remove cordova-plugin-zeep
 ```
 
 ### Plain example
-~~~~
+```js
 var source    = cordova.file.applicationDirectory,
     zip       = cordova.file.cacheDirectory + 'source.zip',
     extracted = cordova.file.cacheDirectory + 'extracted';
@@ -47,11 +47,11 @@ Zeep.zip({
 }, function(e) {
     console.log('zip error: ', e);
 });
-~~~~
+```
 
 ### [Angular](https://angularjs.org) example
 (+ other angular-based frameworks -> Ionic, Mobile Angular UI, LumX, MEAN, Angular Foundation, ...)
-~~~~
+```js
 module.controller('MyCtrl', function($scope, $cordovaZeep) {
     
     var source    = cordova.file.applicationDirectory,
@@ -86,4 +86,4 @@ module.controller('MyCtrl', function($scope, $cordovaZeep) {
     });
     
 });
-~~~~
+```
