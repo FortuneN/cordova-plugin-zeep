@@ -1,5 +1,5 @@
 # cordova-plugin-zeep
-Zip compression/decompression on the cordova/phonegap platform
+Zip compression/decompression on the Apache Cordova / Phonegap / ionic / ... platform
 
 ### Platforms
 - ios
@@ -47,7 +47,7 @@ Zeep.zip({
 });
 ~~~~
 
-### Angular example
+### Angular / Ionic / ... example
 ~~~~
 module.controller('MyCtrl', function($scope, $cordovaZeep) {
     
