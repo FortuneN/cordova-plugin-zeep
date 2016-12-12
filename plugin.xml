@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+
+<plugin id="cordova-plugin-zeep" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <name>Zeep</name>
+    <description>Cordova Zeep Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,zeep,zip,unzip,FiNe</keywords>
+    <repo>https://github.com/FortuneN/cordova-plugin-zeep.git</repo>
+    <issue>https://github.com/FortuneN/cordova-plugin-zeep/issues</issue>
+    
+    <dependency id="cordova-plugin-file" version=">=2.0.0" />
+    
+    <js-module name="Zeep" src="www/Zeep.js">
+        <clobbers target="window.Zeep" />
+    </js-module>
+    
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Zeep">
+                <param name="android-package" value="FiNe.Zeep" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/FiNe/Zeep.java" target-dir="src/FiNe" />
+    </platform>
+    
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Zeep">
+                <param name="ios-package" value="FiNeZeep" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/FiNeZeep.h" />
+        <source-file src="src/ios/FiNeZeep.m" />
+        <!-- SSZipArchive -->
+        <header-file src="src/ios/Common.h" />
+        <header-file src="src/ios/aes/aes.h" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/aes_via_ace.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/aescrypt.c" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/aeskey.c" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/aesopt.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/aestab.c" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/aestab.h" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/brg_endian.h" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/brg_types.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/entropy.c" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/entropy.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/fileenc.c" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/fileenc.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/hmac.c" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/hmac.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/prng.c" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/prng.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/pwd2key.c" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/pwd2key.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/aes/sha1.c" target-dir="Plugins/aes" />
+        <header-file src="src/ios/aes/sha1.h" target-dir="Plugins/aes" />
+        <source-file src="src/ios/SSZipArchive.m" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/SSZipArchive.h" target-dir="Plugins/minizip" />
+        <source-file src="src/ios/minizip/zip.c" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/minizip/zip.h" target-dir="Plugins/minizip" />
+        <source-file src="src/ios/minizip/unzip.c" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/minizip/unzip.h" target-dir="Plugins/minizip" />
+        <source-file src="src/ios/minizip/mztools.c" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/minizip/mztools.h" target-dir="Plugins/minizip" />
+        <source-file src="src/ios/minizip/ioapi.c" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/minizip/ioapi.h" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/minizip/crypt.h" target-dir="Plugins/minizip" />
+        <framework src="libz.dylib" />
+    </platform>
+    
+</plugin>
