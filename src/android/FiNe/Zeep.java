@@ -1,22 +1,22 @@
 package FiNe;
 
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONException;
-import java.io.File;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.net.URL;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-import java.util.zip.ZipEntry;
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
+import org.json.JSONArray;
+import org.json.JSONException;
 
-public class cordovaPluginZeep extends CordovaPlugin
+public class Zeep extends CordovaPlugin
 {
-    private static final int BUFFER_SIZE = 2048;
+    private static final int BUFFER_SIZE = 1024;
     
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException
@@ -25,14 +25,14 @@ public class cordovaPluginZeep extends CordovaPlugin
         {
             if (action.equals("zip"))
             {
-                zip(args.getString(0), args.getString(1), args.getString(2).equals("yes") ? true : false);
+                zip(args.getString(0), args.getString(1));
             }
             else
             {
                 unzip(args.getString(0), args.getString(1));
             }
             
-            callbackContext.success("");
+            callbackContext.success();
             return true;
         }
         catch (Exception e)
@@ -42,27 +42,28 @@ public class cordovaPluginZeep extends CordovaPlugin
         }
     }
     
-    private void zip(final String from, final String to, final boolean noCompression) throws Exception
+    private void zip(final String from, final String to) throws Exception
     {
         ZipOutputStream outStream = null;
         
         try
         {
-            outStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(to)));
-            if (noCompression) outStream.setMethod(ZipOutputStream.DEFLATED);
+            final File fromFile = getFile(from);
+            final File toFile = getFile(to);
+            final byte[] buffer = new byte[BUFFER_SIZE];
             
-            walk(outStream, new File(from), new WalkListener()
+            outStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(toFile)));
+            
+            walk(outStream, fromFile, new WalkListener()
             {
-                @Override
-                public void onFile(ZipOutputStream outStream, String path) throws Exception
+                public void onFile(ZipOutputStream outStream, File file) throws Exception
                 {
-                    byte[] buffer = new byte[BUFFER_SIZE];
                     BufferedInputStream inStream = null;
                     
                     try
                     {
-                        inStream = new BufferedInputStream(new FileInputStream(path), BUFFER_SIZE);
-                        outStream.putNextEntry(new ZipEntry(path));
+                        inStream = new BufferedInputStream(new FileInputStream(file), BUFFER_SIZE);
+                        outStream.putNextEntry(new ZipEntry(fromFile.toURI().relativize(file.toURI()).getPath()));
                         int count;
                         
                         while ((count = inStream.read(buffer, 0, BUFFER_SIZE)) != -1)
@@ -95,17 +96,21 @@ public class cordovaPluginZeep extends CordovaPlugin
         
         try
         {
-            inStream = new ZipInputStream(new BufferedInputStream(new FileInputStream(from)));
-            byte[] buffer = new byte[BUFFER_SIZE];
-            ZipEntry entry;
+            final File fromFile = getFile(from);
+            final File toFile = getFile(to);
+            final byte[] buffer = new byte[BUFFER_SIZE];
             
-            while((entry = inStream.getNextEntry()) != null)
+            inStream = new ZipInputStream(new BufferedInputStream(new FileInputStream(fromFile)));
+            
+            ZipEntry entry; while((entry = inStream.getNextEntry()) != null)
             {
                 BufferedOutputStream outStream = null;
                 
                 try
                 {
-                    outStream = new BufferedOutputStream(new FileOutputStream(to + File.separator + entry.getName()), BUFFER_SIZE);
+                    File file = new File(toFile, entry.getName());
+                    file.getParentFile().mkdirs();
+                    outStream = new BufferedOutputStream(new FileOutputStream(file), BUFFER_SIZE);
                     int count;
                     
                     while ((count = inStream.read(buffer, 0, BUFFER_SIZE)) != -1)
@@ -144,14 +149,26 @@ public class cordovaPluginZeep extends CordovaPlugin
                 }
                 else
                 {
-                    listener.onFile(outStream, file.getAbsolutePath());
+                    listener.onFile(outStream, file);
                 }
             }
         }
     }
     
+    private static File getFile(String urlOrPath)
+    {
+        try
+        {
+            return new File(new URL(urlOrPath).toURI());
+        }
+        catch (Exception e)
+        {
+            return new File(urlOrPath);
+        }
+    }
+    
     interface WalkListener
     {
-        void onFile(ZipOutputStream outStream, String path) throws Exception;
+        void onFile(ZipOutputStream outStream, File file) throws Exception;
     }
 }
