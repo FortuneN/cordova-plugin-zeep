@@ -34,3 +34,18 @@ exports.unzip = function(config, success, error) {
         document.body.innerHTML += '<br>exec:after';
     }, false);
 };
+
+if (window.angular) {
+    window.angular.module('ngCordova.plugins.zeep', []).service('$cordovaZeep', ['$q', function ($q) {
+        this.zip = function (config) {
+            return $(function(resolve, reject) {
+                window.Zeep.zip(config, resolve, reject);
+            });
+        };
+        this.unzip: function (config) {
+            return $(function(resolve, reject) {
+                window.Zeep.unzip(config, resolve, reject);
+            });
+        };
+    }]);
+}
