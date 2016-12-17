@@ -92,3 +92,6 @@ module.controller('MyCtrl', function($scope, $cordovaZeep) {
     
 })
 ```
+
+### License
+Apache 2.0

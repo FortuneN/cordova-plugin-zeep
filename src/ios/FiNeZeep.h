@@ -4,7 +4,7 @@
 
 @interface FiNeZeep : CDVPlugin
 
-- (void)zip:(CDVInvokedUrlCommand*)command;
-- (void)unzip:(CDVInvokedUrlCommand*)command;
+-(void)zip:(CDVInvokedUrlCommand*)command;
+-(void)unzip:(CDVInvokedUrlCommand*)command;
 
 @end
