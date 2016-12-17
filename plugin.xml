@@ -15,8 +15,6 @@
         <clobbers target="window.Zeep" />
     </js-module>
 	
-	<!-- android -->
-    
     <platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="Zeep">
@@ -25,9 +23,7 @@
         </config-file>
         <source-file src="src/android/FiNe/Zeep.java" target-dir="src/FiNe" />
     </platform>
-
-	<!-- ios -->
-    
+	
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="Zeep">
@@ -36,7 +32,6 @@
         </config-file>
         <header-file src="src/ios/FiNeZeep.h" />
         <source-file src="src/ios/FiNeZeep.m" />
-        <!-- SSZipArchive -->
         <header-file src="src/ios/Common.h" />
         <header-file src="src/ios/aes/aes.h" target-dir="Plugins/aes" />
         <header-file src="src/ios/aes/aes_via_ace.h" target-dir="Plugins/aes" />
@@ -72,9 +67,8 @@
         <header-file src="src/ios/minizip/crypt.h" target-dir="Plugins/minizip" />
         <framework src="libz.dylib" />
     </platform>
-
-	<!-- windows : phone 7
 	
+	<!--
 	<platform name="wp7">
 		<config-file target="config.xml" parent="/*">
 			<feature name="Zeep">
@@ -83,8 +77,6 @@
 		</config-file>
 		<source-file src="src/wp/Zeep.cs" />
 	</platform>
-
-	--><!-- windows : phone 8 --><!--
 	
 	<platform name="wp8">
 		<config-file target="config.xml" parent="/*">
@@ -95,15 +87,11 @@
 		<source-file src="src/wp/Zeep.cs" />
 	</platform>
 	
-	--><!-- windows : phone 8.1 + Windows 10 --><!--
-	
 	<platform name="windows">
 		<js-module src="src/windows/ZeepProxy.js" name="ZeepProxy">
-			<merges target="" />
+			<runs />
 		</js-module>
-		<js-module src="src/windows/jszip.js" name="JSZip">
-			<clobbers target="window.JSZip" />
-		</js-module>
+		<framework src="src/windows/Zeep/Zeep.csproj" type="projectReference" custom="true" />
 	</platform>
 	-->
 	
