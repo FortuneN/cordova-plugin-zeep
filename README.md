@@ -90,7 +90,7 @@ module.controller('MyCtrl', function($scope, $cordovaZeep) {
         console.log('zip error: ', e);
     });
     
-})
+});
 ```
 
 ### License
