@@ -4,6 +4,7 @@ Zip compression/decompression on the [Apache Cordova](https://cordova.apache.org
 ### Platforms
 - ios
 - android
+- windows
 
 ### Add to project
 ```sh
