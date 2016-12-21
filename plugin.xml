@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin id="cordova-plugin-zeep" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-zeep" version="0.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     
     <name>Zeep</name>
     <description>Cordova Zeep Plugin</description>
     <license>Apache 2.0</license>
-    <keywords>cordova,zeep,zip,unzip,FiNe</keywords>
+    <keywords>cordova,zeep,zip,unzip,FiNe,ecosystem:cordova,cordova-android,cordova-ios,cordova-windows</keywords>
     <repo>https://github.com/FortuneN/cordova-plugin-zeep.git</repo>
     <issue>https://github.com/FortuneN/cordova-plugin-zeep/issues</issue>
     

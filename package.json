@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-zeep",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Zip compression/decompression for the cordova/phonegap platform",
   "cordova": {
     "id": "cordova-plugin-zeep",
@@ -19,7 +19,11 @@
     "zeep",
     "zip",
     "unzip",
-    "FiNe"
+    "FiNe",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
   ],
   "author": "Fortune Ngwenya",
   "license": "Apache 2.0",
