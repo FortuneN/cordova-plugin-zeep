@@ -75,6 +75,7 @@
 				<param name="wp-package" value="Zeep"/>
 			</feature>
 		</config-file>
+		<framework src="src/wp/ICSharpCode.SharpZipLib.dll" custom="true"/>
 		<source-file src="src/wp/Zeep.cs" />
 	</platform>
 	
@@ -84,20 +85,27 @@
 				<param name="wp-package" value="Zeep"/>
 			</feature>
 		</config-file>
+		<framework src="src/wp/ICSharpCode.SharpZipLib.dll" custom="true"/>
 		<source-file src="src/wp/Zeep.cs" />
 	</platform>
+	-->
 	
 	<platform name="windows">
 		<js-module src="src/windows/ZeepProxy.js" name="ZeepProxy">
-			<runs />
+			<merges target="" />
 		</js-module>
-		<framework src="src/windows/Zeep/Zeep.csproj" type="projectReference" custom="true" />
+		<framework src="src/windows/FiNeZeep/bin/Debug/ICSharpCode.SharpZipLib.dll" custom="true" />
+		<framework src="src/windows/FiNeZeep/bin/Debug/FiNeZeep.winmd" custom="true" />
 	</platform>
-	-->
 	
 	<!--
 	TODO: Document: Add to config.xml
 	<preference name="windows-phone-target-version" value="10.0" />
+	OR
 	<preference name="windows-target-version" value="10.0" />
+	
+	TODO: Document: Add to 'build', 'emulate' & 'run'
+	-`-archs=x86
 	-->
+	
 </plugin>
