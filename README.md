@@ -8,7 +8,7 @@ Zip compression/decompression on the [Apache Cordova](https://cordova.apache.org
 
 ### Add to project
 ```sh
-cordova plugin add https://github.com/FortuneN/cordova-plugin-zeep.git
+cordova plugin add cordova-plugin-zeep
 ```
 
 ### Remove from project
