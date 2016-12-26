@@ -21,7 +21,7 @@ from : [string] the path/url of the folder whose contents you want to compress<b
 to&nbsp;&nbsp;&nbsp;&nbsp; : [string] the path/url of the zip file that you want to produce
 
 ### Decompression (Zeep.unzip or $cordovaZeep.unzip)
-from : [string] the path/url of the zip file that you want to uncompress<br/>
+from : [string] the path/url of the zip file that you want to decompress<br/>
 to&nbsp;&nbsp;&nbsp;&nbsp; : [string] the path/url of the folder in which you want to deposit the contents of the zip file
 
 ### Plain JS example
