@@ -18,11 +18,11 @@ cordova plugin remove cordova-plugin-zeep
 
 ### Compression (Zeep.zip or $cordovaZeep.zip)
 from : [string] the path/url of the folder whose contents you want to compress<br/>
-to   : [string] the path/url of the zip file that you want to produce
+to&nbsp;&nbsp; : [string] the path/url of the zip file that you want to produce
 
 ### Decompression (Zeep.unzip or $cordovaZeep.unzip)
 from : [string] the path/url of the zip file that you want to uncompress<br/>
-to   : [string] the path/url of the folder in which you want to deposit the contents of the zip file
+to&nbsp;&nbsp; : [string] the path/url of the folder in which you want to deposit the contents of the zip file
 
 ### Plain JS example
 ```js
