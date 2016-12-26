@@ -16,7 +16,15 @@ cordova plugin add cordova-plugin-zeep
 cordova plugin remove cordova-plugin-zeep
 ```
 
-### Plain example
+### Compression (Zeep.zip or $cordovaZeep.zip)
+from : [string] the path/url of the folder whose contents you want to compress
+to   : [string] the path/url of the zip file that you want to produce
+
+### Decompression (Zeep.unzip or $cordovaZeep.unzip)
+from : [string] the path/url of the zip file that you want to uncompress
+to   : [string] the path/url of the folder in which you want to deposit the contents of the zip file
+
+### Plain JS example
 ```js
 var source    = cordova.file.applicationDirectory,
     zip       = cordova.file.cacheDirectory + 'source.zip',
