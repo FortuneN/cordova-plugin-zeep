@@ -1,0 +1,120 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.8
+3 info using node@v7.0.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'C:\\PROJECTS\\CordovaPluginZeep\\cordova-plugin-zeep',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\fortunen\AppData\Roaming\npm-cache\cordova-plugin-zeep\0.0.2\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\fortunen\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle cordova-plugin-zeep@0.0.2~prepublish: cordova-plugin-zeep@0.0.2
+11 silly lifecycle cordova-plugin-zeep@0.0.2~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\fortunen\\AppData\\Roaming\\npm-cache\\cordova-plugin-zeep\\0.0.2\\package.tgz',
+12 verbose tar pack   'C:\\PROJECTS\\CordovaPluginZeep\\cordova-plugin-zeep' ]
+13 verbose tarball C:\Users\fortunen\AppData\Roaming\npm-cache\cordova-plugin-zeep\0.0.2\package.tgz
+14 verbose folder C:\PROJECTS\CordovaPluginZeep\cordova-plugin-zeep
+15 verbose addLocalTarball adding from inside cache C:\Users\fortunen\AppData\Roaming\npm-cache\cordova-plugin-zeep\0.0.2\package.tgz
+16 verbose correctMkdir C:\Users\fortunen\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+17 silly cache afterAdd cordova-plugin-zeep@0.0.2
+18 verbose afterAdd C:\Users\fortunen\AppData\Roaming\npm-cache\cordova-plugin-zeep\0.0.2\package\package.json not in flight; writing
+19 verbose correctMkdir C:\Users\fortunen\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+20 verbose afterAdd C:\Users\fortunen\AppData\Roaming\npm-cache\cordova-plugin-zeep\0.0.2\package\package.json written
+21 silly publish { name: 'cordova-plugin-zeep',
+21 silly publish   version: '0.0.2',
+21 silly publish   description: 'Zip compression/decompression for the cordova/phonegap platform',
+21 silly publish   cordova:
+21 silly publish    { id: 'cordova-plugin-zeep',
+21 silly publish      platforms: [ 'ios', 'android', 'windows' ] },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/FortuneN/cordova-plugin-zeep.git' },
+21 silly publish   keywords:
+21 silly publish    [ 'cordova',
+21 silly publish      'zeep',
+21 silly publish      'zip',
+21 silly publish      'unzip',
+21 silly publish      'FiNe',
+21 silly publish      'ecosystem:cordova',
+21 silly publish      'cordova-android',
+21 silly publish      'cordova-ios',
+21 silly publish      'cordova-windows' ],
+21 silly publish   author: { name: 'Fortune Ngwenya' },
+21 silly publish   license: 'Apache 2.0',
+21 silly publish   bugs: { url: 'https://github.com/FortuneN/cordova-plugin-zeep/issues' },
+21 silly publish   homepage: 'https://github.com/FortuneN/cordova-plugin-zeep#readme',
+21 silly publish   readme: '# cordova-plugin-zeep\nZip compression/decompression on the [Apache Cordova](https://cordova.apache.org) / [PhoneGap](http://phonegap.com) platform\n\n### Platforms\n- ios\n- android\n- windows\n\n### Add to project\n```sh\ncordova plugin add cordova-plugin-zeep\n```\n\n### Remove from project\n```sh\ncordova plugin remove cordova-plugin-zeep\n```\n\n### Compression (Zeep.zip or $cordovaZeep.zip)\nfrom : [string] the path/url of the folder whose contents you want to compress<br/>\nto&nbsp;&nbsp;&nbsp;&nbsp; : [string] the path/url of the zip file that you want to produce\n\n### Decompression (Zeep.unzip or $cordovaZeep.unzip)\nfrom : [string] the path/url of the zip file that you want to decompress<br/>\nto&nbsp;&nbsp;&nbsp;&nbsp; : [string] the path/url of the folder in which you want to deposit the contents of the zip file\n\n### Plain JS example\n```js\nvar source    = cordova.file.applicationDirectory,\n    zip       = cordova.file.cacheDirectory + \'source.zip\',\n    extracted = cordova.file.cacheDirectory + \'extracted\';\n\nconsole.log(\'source    : \' + source   );\nconsole.log(\'zip       : \' + zip      );\nconsole.log(\'extracted : \' + extracted);\n\nconsole.log(\'zipping ...\');\n\nZeep.zip({\n    from : source,\n    to   : zip\n}, function() {\n\n    console.log(\'zip success!\');\n    console.log(\'unzipping ...\');\n\n    Zeep.unzip({\n        from : zip,\n        to   : extracted\n    }, function() {\n        console.log(\'unzip success!\');\n    }, function(e) {\n        console.log(\'unzip error: \', e);\n    });\n\n}, function(e) {\n    console.log(\'zip error: \', e);\n});\n```\n\n### [Angular](https://angularjs.org) example\n(+ other angular-based frameworks -> Ionic, Mobile Angular UI, LumX, MEAN, Angular Foundation, ...)\n```js\n\nvar module = angular.controller(\'MyModule\', [\'ngCordova.plugins.zeep\'])\n\n...\n\nmodule.controller(\'MyCtrl\', function($scope, $cordovaZeep) {\n    \n    var source    = cordova.file.applicationDirectory,\n        zip       = cordova.file.cacheDirectory + \'source.zip\',\n        extracted = cordova.file.cacheDirectory + \'extracted\';\n    \n    console.log(\'source    : \' + source   );\n    console.log(\'zip       : \' + zip      );\n    console.log(\'extracted : \' + extracted);\n    \n    console.log(\'zipping ...\');\n    \n    $cordovaZeep.zip({\n        from : source,\n        to   : zip\n    }).then(function() {\n        \n        console.log(\'zip success!\');\n        console.log(\'unzipping ...\');\n        \n        $cordovaZeep.unzip({\n            from : zip,\n            to   : extracted\n        }).then(function() {\n            console.log(\'unzip success!\');\n        }, function(e) {\n            console.log(\'unzip error: \', e);\n        });\n        \n    }, function(e) {\n        console.log(\'zip error: \', e);\n    });\n    \n});\n```\n\n### License\nApache 2.0\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'b75dadb038a1fa0c84878f72cc29f9b2ee402bc2',
+21 silly publish   _id: 'cordova-plugin-zeep@0.0.2',
+21 silly publish   scripts: {},
+21 silly publish   _shasum: '3595b1bb95264c658b7d57c643a22199017e9da7',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name cordova-plugin-zeep
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'cordova-plugin-zeep',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'cordova-plugin-zeep',
+26 silly mapToRegistry   name: 'cordova-plugin-zeep',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/cordova-plugin-zeep
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading C:\Users\fortunen\AppData\Roaming\npm-cache\cordova-plugin-zeep\0.0.2\package.tgz
+30 verbose request uri https://registry.npmjs.org/cordova-plugin-zeep
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 6:37:19 PM
+33 verbose request using bearer token for auth
+34 verbose request id 54e06f78d8e164a9
+35 http request PUT https://registry.npmjs.org/cordova-plugin-zeep
+36 http 403 https://registry.npmjs.org/cordova-plugin-zeep
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Tue, 27 Dec 2016 16:37:24 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-ams4139-AMS',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1482856642.254746,VS0,VE1853',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating C:\Users\fortunen\AppData\Roaming\npm-cache\registry.npmjs.org\cordova-plugin-zeep on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 0.0.2." : cordova-plugin-zeep
+40 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:290:14)
+40 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+40 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1044:10)
+40 verbose stack     at emitOne (events.js:96:13)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:965:12)
+41 verbose statusCode 403
+42 verbose pkgid cordova-plugin-zeep
+43 verbose cwd C:\PROJECTS\CordovaPluginZeep\cordova-plugin-zeep
+44 error Windows_NT 10.0.14393
+45 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+46 error node v7.0.0
+47 error npm  v3.10.8
+48 error code E403
+49 error "You cannot publish over the previously published version 0.0.2." : cordova-plugin-zeep
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
