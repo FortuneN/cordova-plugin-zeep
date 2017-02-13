@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin id="cordova-plugin-zeep" version="0.0.3" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    
+<plugin id="cordova-plugin-zeep" version="0.0.4" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+
     <name>Zeep</name>
     <description>Cordova Zeep Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,zeep,zip,unzip,FiNe,ecosystem:cordova,cordova-android,cordova-ios,cordova-windows</keywords>
     <repo>https://github.com/FortuneN/cordova-plugin-zeep.git</repo>
     <issue>https://github.com/FortuneN/cordova-plugin-zeep/issues</issue>
-    
+
     <dependency id="cordova-plugin-file" version=">=2.0.0" />
-	
+
     <js-module name="Zeep" src="www/Zeep.js">
         <clobbers target="window.Zeep" />
     </js-module>
-	
+
+    <platform name="browser">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Zeep">
+                <param name="browser-package" value="Zeep" />
+            </feature>
+        </config-file>
+        <js-module name="ZeepProxy" src="src/browser/ZeepProxy.js">
+            <runs />
+        </js-module>
+    </platform>
+
     <platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="Zeep">
@@ -23,7 +34,7 @@
         </config-file>
         <source-file src="src/android/FiNe/Zeep.java" target-dir="src/FiNe" />
     </platform>
-	
+
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="Zeep">
@@ -67,7 +78,7 @@
         <header-file src="src/ios/minizip/crypt.h" target-dir="Plugins/minizip" />
         <framework src="libz.dylib" />
     </platform>
-	
+
 	<!--
 	<platform name="wp7">
 		<config-file target="config.xml" parent="/*">
@@ -78,7 +89,7 @@
 		<framework src="src/wp/ICSharpCode.SharpZipLib.dll" custom="true"/>
 		<source-file src="src/wp/Zeep.cs" />
 	</platform>
-	
+
 	<platform name="wp8">
 		<config-file target="config.xml" parent="/*">
 			<feature name="Zeep">
@@ -89,7 +100,7 @@
 		<source-file src="src/wp/Zeep.cs" />
 	</platform>
 	-->
-	
+
 	<platform name="windows">
 		<js-module src="src/windows/ZeepProxy.js" name="ZeepProxy">
 			<merges target="" />
@@ -97,15 +108,15 @@
 		<framework src="src/windows/FiNeZeep/bin/Debug/ICSharpCode.SharpZipLib.dll" custom="true" />
 		<framework src="src/windows/FiNeZeep/bin/Debug/FiNeZeep.winmd" custom="true" />
 	</platform>
-	
+
 	<!--
 	TODO: Document: Add to config.xml
 	<preference name="windows-phone-target-version" value="10.0" />
 	OR
 	<preference name="windows-target-version" value="10.0" />
-	
+
 	TODO: Document: Add to 'build', 'emulate' & 'run'
 	-`-archs=x86
 	-->
-	
+
 </plugin>
