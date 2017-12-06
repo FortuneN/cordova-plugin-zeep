@@ -101,7 +101,7 @@ public class Zeep extends CordovaPlugin
             final byte[] buffer = new byte[BUFFER_SIZE];
             
             inStream = new ZipInputStream(new BufferedInputStream(new FileInputStream(fromFile)));
-            
+            inStream.setEncoding("GBK");
             ZipEntry entry; while((entry = inStream.getNextEntry()) != null)
             {
                 BufferedOutputStream outStream = null;
