@@ -110,13 +110,16 @@ public class Zeep extends CordovaPlugin
                 {
                     File file = new File(toFile, entry.getName());
                     file.getParentFile().mkdirs();
-                    outStream = new BufferedOutputStream(new FileOutputStream(file), BUFFER_SIZE);
-                    int count;
-                    
-                    while ((count = inStream.read(buffer, 0, BUFFER_SIZE)) != -1)
-                    {
-                        outStream.write(buffer, 0, count);
-                    }
+                    if (!entry.isDirectory()) 
+                     { 
+                        outStream = new BufferedOutputStream(new FileOutputStream(file), BUFFER_SIZE); 
+                        int count; 
+                         
+                        while ((count = inStream.read(buffer, 0, BUFFER_SIZE)) != -1) 
+                        { 
+                              outStream.write(buffer, 0, count); 
+                        } 
+                     } 
                 }
                 finally
                 {
