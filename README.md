@@ -62,11 +62,11 @@ Zeep.zip({
 (+ other angular-based frameworks -> Ionic, Mobile Angular UI, LumX, MEAN, Angular Foundation, ...)
 ```js
 
-var module = angular.controller('MyModule', ['ngCordova.plugins.zeep'])
+var app = angular.module('MyApp', ['ngCordova.plugins.zeep'])
 
 ...
 
-module.controller('MyCtrl', function($scope, $cordovaZeep) {
+app.controller('MyController', function($scope, $cordovaZeep) {
     
     var source    = cordova.file.applicationDirectory,
         zip       = cordova.file.cacheDirectory + 'source.zip',
