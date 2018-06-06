@@ -103,9 +103,7 @@ namespace FiNeZeep
 						using (Stream fileStream = await file.OpenStreamForWriteAsync())
 						using (Stream entryStream = entry.Open())
 						{
-							byte[] buffer = new byte[entry.Length];
-							await entryStream.ReadAsync(buffer, 0, buffer.Length);
-							await fileStream.WriteAsync(buffer, 0, buffer.Length);
+							await entryStream.CopyToAsync(fileStream);
 							await fileStream.FlushAsync();
 						}
 					}
