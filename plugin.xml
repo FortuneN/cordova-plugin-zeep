@@ -105,8 +105,8 @@
 		<js-module src="src/windows/ZeepProxy.js" name="ZeepProxy">
 			<merges target="" />
 		</js-module>
-		<framework src="src/windows/FiNeZeep/bin/Debug/ICSharpCode.SharpZipLib.dll" custom="true" />
-		<framework src="src/windows/FiNeZeep/bin/Debug/FiNeZeep.winmd" custom="true" />
+		<framework src="src/windows/FiNeZeep/bin/Release/ICSharpCode.SharpZipLib.dll" custom="true" />
+		<framework src="src/windows/FiNeZeep/bin/Release/FiNeZeep.winmd" custom="true" />
 	</platform>
 
 	<!--
