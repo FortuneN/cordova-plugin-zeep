@@ -105,7 +105,7 @@ app.controller('MyController', function($scope, $cordovaZeep) {
 ### License
 Apache 2.0
 
-### Buy me beer
+### Buy me beer (maybe)
 If you find this plugin useful, perhaps you can buy me a beer :)
 
 [<img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png">](https://paypal.me/FortuneNgwenya)
