@@ -1,4 +1,4 @@
-﻿using ICSharpCode.SharpZipLib.Zip;
+using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,12 +20,12 @@ namespace FiNeZeep
 		{
 			return zipImpl(args).AsAsyncOperation();
 		}
-
+		
 		public static IAsyncOperation<string> unzip([ReadOnlyArray] object[] args)
 		{
 			return unzipImpl(args).AsAsyncOperation();
 		}
-
+		
 		private static async Task<string> zipImpl(object[] args)
 		{
 			try
@@ -33,7 +33,7 @@ namespace FiNeZeep
 				string from = (string)args[0];
 				string fromPath = getPath(from);
 				StorageFolder fromFolder = await StorageFolder.GetFolderFromPathAsync(fromPath);
-
+				
 				string to = (string)args[1];
 				string toPath = getPath(to);
 				string toParentPath = getPathParent(toPath);
@@ -67,7 +67,7 @@ namespace FiNeZeep
 				return e.Message;
 			}
 		}
-
+		
 		private static string getRelativePath(StorageFolder fromFolder, StorageFile file)
 		{
 			var path = file.Path.Replace(fromFolder.Path, string.Empty);
@@ -77,7 +77,7 @@ namespace FiNeZeep
 			}
 			return path;
 		}
-
+		
 		private static async Task<string> unzipImpl(object[] args)
 		{
 			try
@@ -85,26 +85,26 @@ namespace FiNeZeep
 				string from = (string)args[0];
 				string fromPath = getPath(from);
 				StorageFile fromFile = await StorageFile.GetFileFromPathAsync(fromPath);
-
+				
 				string to = (string)args[1];
 				string toPath = getPath(to);
 				string toParentPath = getPathParent(toPath);
 				StorageFolder toParentFolder = await StorageFolder.GetFolderFromPathAsync(toParentPath);
 				StorageFolder toFolder = await toParentFolder.CreateFolderAsync(Path.GetFileName(toPath), CreationCollisionOption.OpenIfExists);
-
+				
 				using (Stream zipMemoryStream = await fromFile.OpenStreamForReadAsync())
 				using (ZipArchive zipArchive = new ZipArchive(zipMemoryStream, ZipArchiveMode.Read))
 				{
 					foreach (ZipArchiveEntry entry in zipArchive.Entries)
 					{
-						 if (entry_path.Contains(@"/"))
-                        {
-                          entry_path = Regex.Replace(entry_path, @"/", @"\");
-                        }
-
-                        StorageFolder entryFileFolder = (entry_path.Contains(@"\")) ? await toFolder.CreateFolderAsync(getPathParent(entry_path), CreationCollisionOption.OpenIfExists) : toFolder;
-                        StorageFile file = await entryFileFolder.CreateFileAsync(entry.Name, CreationCollisionOption.ReplaceExisting);
-
+						if (entry_path.Contains(@"/"))
+						{
+							entry_path = Regex.Replace(entry_path, @"/", @"\");
+						}
+						
+						StorageFolder entryFileFolder = (entry_path.Contains(@"\")) ? await toFolder.CreateFolderAsync(getPathParent(entry_path), CreationCollisionOption.OpenIfExists) : toFolder;
+						StorageFile file = await entryFileFolder.CreateFileAsync(entry.Name, CreationCollisionOption.ReplaceExisting);
+						
 						using (Stream fileStream = await file.OpenStreamForWriteAsync())
 						using (Stream entryStream = entry.Open())
 						{
@@ -113,7 +113,7 @@ namespace FiNeZeep
 						}
 					}
 				}
-
+				
 				return string.Empty;
 			}
 			catch (Exception e)
@@ -123,9 +123,9 @@ namespace FiNeZeep
 		}
 		
 		//UTILS
- 
+ 		
 		delegate Task onFile(StorageFile file);
-
+		
 		private static async Task walk(StorageFolder parentFolder, onFile onfile)
 		{
 			var items = await parentFolder.GetItemsAsync();
@@ -144,12 +144,12 @@ namespace FiNeZeep
 				}
 			}
 		}
-
+		
 		private static string getPathParent(string path)
 		{
 			return path.Substring(0,  Math.Max(path.LastIndexOf("\\"), path.LastIndexOf("/"));
 		}
-
+		
 		private static Dictionary<string, string> urlToPathMap = null;
 		private static string getPath(String urlOrPath)
 		{
@@ -168,7 +168,7 @@ namespace FiNeZeep
 					urlToPathMap["ms-appdata:///temp"]    = ApplicationData.Current.TemporaryFolder.Path;
 					urlToPathMap["ms-appdata://"]         = getPathParent(ApplicationData.Current.LocalFolder.Path);
 				}
-
+				
 				foreach (var pair in urlToPathMap)
 				{
 					if (urlOrPath.StartsWith(pair.Key))
@@ -176,7 +176,7 @@ namespace FiNeZeep
 						return urlOrPath.Replace(pair.Key, pair.Value).Replace("/", "\\");
 					}
 				}
-
+				
 				return null;
 			}
 		}
