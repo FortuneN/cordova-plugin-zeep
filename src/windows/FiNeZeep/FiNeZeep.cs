@@ -97,8 +97,13 @@ namespace FiNeZeep
 				{
 					foreach (ZipArchiveEntry entry in zipArchive.Entries)
 					{
-						StorageFolder entryFileFolder = (entry.FullName.Contains("/") || entry.FullName.Contains("\\")) ? await toFolder.CreateFolderAsync(getPathParent(entry.FullName), CreationCollisionOption.OpenIfExists) : toFolder;
-						StorageFile file = await entryFileFolder.CreateFileAsync(Path.GetFileName(entry.Name));
+						 if (entry_path.Contains(@"/"))
+                        {
+                          entry_path = Regex.Replace(entry_path, @"/", @"\");
+                        }
+
+                        StorageFolder entryFileFolder = (entry_path.Contains(@"\")) ? await toFolder.CreateFolderAsync(getPathParent(entry_path), CreationCollisionOption.OpenIfExists) : toFolder;
+                        StorageFile file = await entryFileFolder.CreateFileAsync(entry.Name, CreationCollisionOption.ReplaceExisting);
 
 						using (Stream fileStream = await file.OpenStreamForWriteAsync())
 						using (Stream entryStream = entry.Open())
@@ -142,7 +147,7 @@ namespace FiNeZeep
 
 		private static string getPathParent(string path)
 		{
-			return path.Substring(0, path.LastIndexOf("\\"));
+			return path.Substring(0,  Math.Max(path.LastIndexOf("\\"), path.LastIndexOf("/"));
 		}
 
 		private static Dictionary<string, string> urlToPathMap = null;
