@@ -109,6 +109,10 @@ public class Zeep extends CordovaPlugin
                 try
                 {
                     File file = new File(toFile, entry.getName());
+                    String canonicalPath = file.getCanonicalPath();
+                    if (!canonicalPath.startsWith(toFile.getCanonicalPath())) {
+                        throw new Exception(String.format("Found Zip Path Traversal Vulnerability with %s", canonicalPath));
+                    }
                     file.getParentFile().mkdirs();
                     if (!entry.isDirectory()) 
                      { 
