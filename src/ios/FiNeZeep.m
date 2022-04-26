@@ -39,8 +39,10 @@
     {
         NSString* fromPath = [self pathForURL:[command.arguments objectAtIndex:0]];
         NSString* toPath   = [self pathForURL:[command.arguments objectAtIndex:1]];
+        NSString* password = [command.arguments objectAtIndex:2];
+        password = [password isKindOfClass:[NSString class]] && password.length > 0 ? password : nil;
             
-        if([SSZipArchive createZipFileAtPath:toPath withContentsOfDirectory:fromPath keepParentDirectory:NO withPassword:nil])
+        if([SSZipArchive createZipFileAtPath:toPath withContentsOfDirectory:fromPath keepParentDirectory:NO withPassword:password])
         {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }
@@ -67,9 +69,11 @@
     {
         NSString* fromPath = [self pathForURL:[command.arguments objectAtIndex:0]];
         NSString* toPath   = [self pathForURL:[command.arguments objectAtIndex:1]];
+        NSString* password = [command.arguments objectAtIndex:2];
+        password = [password isKindOfClass:[NSString class]] && password.length > 0 ? password : nil;
         NSError*  error;
             
-        if([SSZipArchive unzipFileAtPath:fromPath toDestination:toPath overwrite:YES password:nil error:&error delegate:self])
+        if([SSZipArchive unzipFileAtPath:fromPath toDestination:toPath overwrite:YES password:password error:&error delegate:self])
         {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }
