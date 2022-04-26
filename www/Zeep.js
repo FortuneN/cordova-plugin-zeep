@@ -43,7 +43,7 @@ exports.zip = function (config, successCallback, errorCallback) {
 				if (error) {
 					return errorCallback(error);
 				}
-				exec(successCallback, errorCallback, 'Zeep', 'zip', [config.from, config.to]);
+				exec(successCallback, errorCallback, 'Zeep', 'zip', [config.from, config.to, config.password]);
 			});
 		} catch (error) {
 			errorCallback(error.message);
@@ -58,7 +58,7 @@ exports.unzip = function(config, successCallback, errorCallback) {
 				if (error) {
 					return errorCallback(error);
 				}
-				exec(successCallback, errorCallback, 'Zeep', 'unzip', [config.from, config.to]);
+				exec(successCallback, errorCallback, 'Zeep', 'unzip', [config.from, config.to, config.password]);
 			});
 		} catch (error) {
 			errorCallback(error.message);
